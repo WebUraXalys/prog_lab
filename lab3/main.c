@@ -11,7 +11,8 @@ int main() {
       y=3*sin(x)+0.35*x-3.8;
       printf("Result: y = %f", y);
       printf(" x = %f\n", x);
-      ++x;
+      //++x;
+      x = x + 0.5;
    }
    
 }
