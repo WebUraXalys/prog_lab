@@ -8,11 +8,10 @@ float fun(float x)
 
 int main()
 {
-   float x, xMin, xMax, y, c;
+   float xMin, xMax, c;
    xMin = 2;
    xMax = 3;
-   x = xMin;
-   while (fabs(xMin - xMax) > 0.00001)
+   while ((xMax - xMin) > 0.00001)
    {
       c = (xMin + xMax) / 2;
       if (fun(c) * fun(xMin) < 0)
