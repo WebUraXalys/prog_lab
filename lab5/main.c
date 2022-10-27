@@ -15,7 +15,7 @@ int main()
    float xMin, xMax, esp, c;
    xMin = 2;
    xMax = 3;
-   esp = 0.00001;
+   esp = 0.0000001;
    do
    {
       c = fun(xMin) / fun2(xMin);
