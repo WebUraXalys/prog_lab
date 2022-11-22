@@ -2,10 +2,11 @@
 #include "math.h"
 
 int main() {
-   float s;
+   float s, N;
    s = 0;
+   N = 200;
    FILE *text = fopen("graph_lab8.txt", "w");
-   for (float t = 0; t < 1; t = t + 0.02)
+   for (float t = 0; t < 0.02; t = 0.02/N)
    {
       if (t > 0 && t <= 0.8){
          s = (7*t) / 0.8;
