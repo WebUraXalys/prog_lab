@@ -1,51 +1,38 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
-// int main()
-// {
-//    int n;
-//    double a[n];
-//    double min = a[0];
-//    for (int i = 0; i <= n; i++)
-//    {
-//       if (a[1] < min){
-//          min = m[i];
-//       }
-//    }
-
-//    cout << "Hello World \n";
-
-//    return 0;
-// }
-
 int main()
 {
-   int i, n, m[n];
-   // n = 10;
-   cout << "Кількість чисел в масиві";
-   // scanf("%d", &n);
-   cout << "Input age: ";
-   for (i = 0; i < n; i++)
+   int n;
+   cout << "Введіть кількість елементів масива : ";
+   cin >> n;
+   // double A[n] = {9, 8, 7, 6, 5, 4, 4, 3, -2, 2.2};
+   double A[n];
+   for (int i = 0; i < n; i++)
    {
-      cin >> m[i]; // Вводим с клавиатуры значение ячейки массива
+      cout << "елемент[" << i << "] = ";
+      cin >> A[i];
+   }
+   sort(A, n + A);
+   double new_A[n];
+   if (A[0] >= 0)
+   {
+      for (int i = 0; i < n; ++i)
+      {
+         new_A[i] = A[i] * (A[0] * A[0]);
+         cout << new_A[i] << endl;
+      }
+   }
+   else if (A[0] < 0)
+   {
+      for (int i = 0; i < n; ++i)
+      {
+         new_A[i] = A[i] * (A[n - 1] * A[n - 1]);
+         cout << new_A[i] << endl;
+      }
    }
 
-   for (i = 0; i < 10; i++)
-   {
-      cout << "m[" << i << "]= " << m[i] << "\n"; // На экран через пробелы выводятся все элементы массива
-   }
-
-   system("pause");
    return 0;
 }
-
-// int main()
-// {
-//     int age;
-//     double weight;
-//     std::cout << "Input age: ";
-//     std::cin >> age >> weight;
-//     std::cout << "Your age: " << age << "\t your weight: " << weight << std::endl;
-//     return 0;
-// }
