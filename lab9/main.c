@@ -7,10 +7,6 @@ struct dataN
    float T ;
    float h ;
    double w ;
-   // int N = 200;
-   // float T = 0.02;
-   // float h = T / N;
-   // double w = (2 * 3.14159) / T;
 };
 
 
