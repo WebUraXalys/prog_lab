@@ -12,7 +12,7 @@ class data{
       }
 
       void cycle(){
-         while((xMax - xMin) > esp){
+         while((fabs(xMax - xMin)) > esp){
             c = (xMin + xMax) / 2;
             if (fun(c) * fun(xMin) < 0){
                xMax = c;
@@ -22,7 +22,7 @@ class data{
             }
          }
          printf("x = %f fun(x) = %f \n", c, fun(c));
-         // cout << "x = " << c << " fun(x) = " << fun(c) << endl;
+         cout << "x = " << c << " fun(x) = " << fun(c) << endl;
       }
 
 };

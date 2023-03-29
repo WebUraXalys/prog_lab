@@ -1,3 +1,4 @@
+let array = [9, 7, 6, 5, 4];
 function mergeSort(array)
 {
 	if (array.length>1)
@@ -38,4 +39,7 @@ function mergeSort(array)
 	}
 	return array
 }
-console.log("hellow");
+
+mergeSort(array);
+
+console.log(array);
