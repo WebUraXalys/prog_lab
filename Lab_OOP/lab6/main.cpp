@@ -26,7 +26,7 @@ class data
                Max = arrY[i];
                iMax = i;
             }
-            if (arrY[i] < Max)
+            if (arrY[i] > Max)
             {
                Min = arrY[i];
                iMin = i;
