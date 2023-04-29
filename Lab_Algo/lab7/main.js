@@ -1,33 +1,37 @@
-let numder = prompt("Введіть числа");
+let numder = prompt("Введіть числа, для сортуванням підрахунком");
 let numderSplit = numder.split(' ').map(Number);
 console.log(numderSplit);
 
-function radixSort(array)
-{ 
-  let position = Array(10).fill(0).map(value => []), 
-      multiplier = 1,
-      maxValue = Math.max(...array);
-  while(maxValue-multiplier>=0)
-  {
-    array.forEach( value => {
-        let slice = Math.floor(value/multiplier);
-        position[slice % 10].push(value);
-      } 
-    )
-    let indexValue = 0;
-    position.forEach( values => {        
-        for(let i = 0; values.length > 0; i++){
-            array[indexValue] = values.shift(0);
-            indexValue++;
-          } 
-      } 
-    )
-    multiplier*=10;
-  }
+let maxElement = Math.max(...numderSplit);
+
+console.log(maxElement);
+
+//let countOfNumbers = 0;
+function countSort(array,maxElement)
+{
+  //countOfNumbers=0;
+  orderOfNumbers = Array(maxElement+1).fill(0)
+  //countOfNumbers += maxElement+1
+  array.forEach( value => {
+      orderOfNumbers[value]++;
+      //countOfNumbers++;
+    } 
+  );
+  let index = 0;
+  orderOfNumbers.forEach( (value,indexValue) => {
+      for(let i = 0; i < value; i++)
+      {
+        array[index] = indexValue;
+        orderOfNumbers[indexValue]--;
+        index++;
+        //countOfNumbers++;
+      }
+    } 
+  )
   return array;
 }
 
-radixSort(numderSplit)
+countSort(numderSplit, maxElement);
 
 document.write(numderSplit);
 alert(numderSplit);
