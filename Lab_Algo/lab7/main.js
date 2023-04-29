@@ -1,8 +1,8 @@
-let numder = prompt("Введіть числа, для сортуванням підрахунком");
-let numderSplit = numder.split(' ').map(Number);
-console.log(numderSplit);
+let number = prompt("Введіть числа, для сортуванням підрахунком");
+let numberSplit = number.split(' ').map(Number);
+console.log(numberSplit);
 
-let maxElement = Math.max(...numderSplit);
+let maxElement = Math.max(...numberSplit);
 
 console.log(maxElement);
 
@@ -31,8 +31,47 @@ function countSort(array,maxElement)
   return array;
 }
 
-countSort(numderSplit, maxElement);
+countSort(numberSplit, maxElement);
 
-document.write(numderSplit);
-alert(numderSplit);
-console.log(numderSplit);
+document.write(numberSplit);
+alert(numberSplit);
+console.log(numberSplit);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// https://www.youtube.com/watch?v=pOsRE1HgQYI&t=62s
