@@ -4,7 +4,7 @@ console.log(numberSplit);
 
 function radixSort(array)
 { 
-  let position = Array(array.length+1).fill(0).map(value => []), 
+  let position = Array(10).fill(0).map(value => []), 
       multiplier = 1,
       maxValue = Math.max(...array);
   while(maxValue-multiplier>=0)

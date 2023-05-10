@@ -1,6 +1,3 @@
-// Частина 1. Швидке сортування
-
-// Функція для здійснення швидкого сортування
 function QuickSort(arr, left, right) {
   if (left < right) {
     let pivotIndex = RandomizedPartition(arr, left, right);
