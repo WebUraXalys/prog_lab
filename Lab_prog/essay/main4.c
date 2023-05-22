@@ -11,7 +11,7 @@ int main(){
    h = (b - a)/ N;
    for(int i = 1; i <= N; i++){
       x = a + i * h;
-      s += (3 * x + 5);
+      s += ( 3 * x + 5 );
    }
    S = h * s;
    printf("%f \n", S);

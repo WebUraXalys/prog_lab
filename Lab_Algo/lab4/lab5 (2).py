@@ -20,13 +20,13 @@ class HashTable:
     def insert(self, key, value):
         index = self.hash1(key)
         i = 0
-        if None in self.table or "DELETED" in self.table or self.table[index][0] == key:
+        if None in self.table or "ВИДАЛЕНО" in self.table or self.table[index][0] == key:
             pass
         else:
             print("Overflowed")
             return 
 
-        while self.table[index] is not None and self.table[index] != "DELETED":
+        while self.table[index] is not None and self.table[index] != "ВИДАЛЕНО":
             if self.table[index][0] == key:
                 self.table[index][1] = value
                 return
@@ -38,7 +38,7 @@ class HashTable:
     def search(self, key):
         index = self.hash1(key)
         i = 0
-        while self.table[index] is not None and self.table[index] != "DELETED":
+        while self.table[index] is not None and self.table[index] != "ВИДАЛЕНО":
             if self.table[index][0] == key:
                 return self.table[index]
             index = (self.hash1(key) + self.hash2(key, i)) % self.size
@@ -48,9 +48,9 @@ class HashTable:
     def delete(self, key):
         index = self.hash1(key)
         i = 0
-        while self.table[index] is not None and self.table[index] != "DELETED":
+        while self.table[index] is not None and self.table[index] != "ВИДАЛЕНО":
             if self.table[index][0] == key:
-                self.table[index] = "DELETED"
+                self.table[index] = "ВИДАЛЕНО"
                 return True
             index = (self.hash1(key) + self.hash2(key, i)) % self.size
             i += 1
@@ -89,47 +89,47 @@ class HashTable:
 
 
 if __name__ == "__main__":
-    size = int(input("Enter the size of hash table: "))
+    size = int(input("Введіть розмір хеш таблиці: "))
     hash_table = HashTable(size)
-    chained_or_oa = int(input("1 Open addressation 2 chained: "))
+    chained_or_oa = int(input("Відкирита адресація '1', Адресація ланцюгом '2': "))
     if chained_or_oa == 1:
-        hash_table.hash_func_type = int(input("Enter the hash func type (1:linear, 2: quadratic, 3: double) of hash table: "))
+        hash_table.hash_func_type = int(input("Виберіть хеш функцію (1:лінійна, 2:квадратична, 3: подвійна) для хеш таблиці: "))
     
     
     while True:
-        print("\n1. Insert")
-        print("2. Search")
-        print("3. Delete")
-        print("4. Display")
-        print("5. Exit")
-        choice = int(input("Enter your choice: "))
+        print("\n1. Додати")
+        print("2. Пошук")
+        print("3. Видалити")
+        print("4. Вивести")
+        print("5. Завершення")
+        choice = int(input("Ваш вибір: "))
         
         if chained_or_oa == 1:
             if choice == 1:
-                key = int(input("Enter key: "))
-                value = input("Enter value: ")
+                key = int(input("Введіть ключ: "))
+                value = input("Введіть значення: ")
                 hash_table.insert(key, value)
                 hash_table.display()
             elif choice == 2:
-                key = int(input("Enter key: "))
+                key = int(input("Введіть ключ: "))
                 value = hash_table.search(key)
                 if value is not None:
-                    print(f"Value for key {key}: {value}")
+                    print(f"Значення для ключа {key}: {value}")
                 else:
-                    print(f"Key {key} not found")
+                    print(f"Ключ {key} не знайдений")
             elif choice == 3:
-                key = int(input("Enter key: "))
+                key = int(input("Введіть значення: "))
                 if hash_table.delete(key):
-                    print(f"Key {key} deleted successfully")
+                    print(f"Ключ {key} видалено успішно")
                     hash_table.display()
                 else:
-                    print(f"Key {key} not found")
+                    print(f"Ключ {key} не знайдений")
             elif choice == 4:
                 hash_table.display()
             elif choice == 5:
                 break
             else:
-                print("Invalid choice")
+                print("Некоректний вибір")
         else:
             if choice == 1:
                 key = int(input("Enter key: "))
@@ -137,14 +137,14 @@ if __name__ == "__main__":
                 hash_table.chained_insert(key, value)
                 hash_table.display()
             elif choice == 2:
-                key = int(input("Enter key: "))
+                key = int(input("Введіть ключ: "))
                 value = hash_table.chained_search(key)
                 if value is not None:
                     print(f"Value for key {key}: {value}")
                 else:
                     print(f"Key {key} not found")
             elif choice == 3:
-                key = int(input("Enter key: "))
+                key = int(input("Введіть ключ: "))
                 if hash_table.chained_delete(key):
                     print(f"Key {key} deleted successfully")
                     hash_table.display()
