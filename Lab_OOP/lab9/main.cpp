@@ -9,7 +9,7 @@
 
 #define pi 3.141592
 
-struct dataN
+struct dataS
 {
    int N ;
    float T ;
@@ -37,40 +37,46 @@ double s(float t)
 }
 
 double ak(int k) {
-    double T = 0.02;
-    double w = 2 * pi / T;
-    double h = 0.02 / 200;
+    // double T = 0.02;
+    // double w = 2 * pi / T;
+    // double h = 0.02 / 200;
+    struct dataS dataN;
+    dataN.N = 200;
+    dataN.T = 0.02;
+    dataN.h = dataN.T / dataN.N;
+    dataN.w = (2* pi) / dataN.T;
+
     double sum = 0;
     for (int i = 0; i <= 200; i++) {
-        double t = i * h;
+        double t = i * dataN.h;
         double l = s(t);
-        sum += l * cos(k * w * t) * h;
+        sum += l * cos(k * dataN.w * t) * dataN.h;
     }
-    return 2.0 / T * sum;
+    return 2.0 / dataN.T * sum;
 }
 
 double bk(int k) {
-    double T = 0.02;
-    double w = 2 * pi / T;
-    double h = 0.02 / 200;
+    // double T = 0.02;
+    // double w = 2 * pi / T;
+    // double h = 0.02 / 200;
     double sum = 0;
     for (int i = 0; i <= 200; i++) {
-        double t = i * h;
+        double t = i * dataN.h;
         double l = s(t);
-        sum += l * sin(k * w * t) * h;
+        sum += l * sin(k * dataN.w * t) * dataN.h;
     }
-    return 2.0 / T * sum;
+    return 2.0 / dataN.T * sum;
 }
 
 double a0() {
-    double T = 0.02;
-    double h = T / 1000.0;
+    // double T = 0.02;
+    double h = dataN.T / 1000.0;
     double a = 0.0;
     for (int j = 0; j <= 1000; j++) {
         double t = j * h;
         a += s(t) * h;
     }
-    return 2.0 / T * a;
+    return 2.0 / dataN.T * a;
 }
 
 void tab() {
@@ -78,11 +84,11 @@ void tab() {
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
     QTextStream out(&file);
-    int N = 200;
-    double h = 0.02 / N;
-    for (int i = 0; i <= N; i++) {
-        double t = i * h;
-        double l = s(i * h);
+    // int N = 200;
+    // double h = 0.02 / N;
+    for (int i = 0; i <= dataN.N; i++) {
+        double t = i * dataN.h;
+        double l = s(i * dataN.h);
         out << t << " " << l << "\n";
     }
     file.close();
@@ -95,14 +101,14 @@ void signal() {
     QTextStream out(&file);
     int N = 5;
     double k = 1.10;
-    double T = 0.02;
-    double w = 2 * pi / T;
+    // double T = 0.02;
+    // double w = 2 * pi / T;
     for (int i = 0; i <= N; i++) {
         double ak_val = ak(i);
         double bk_val = bk(i);
         double a0_val = a0();
         double c_k = sqrt(pow(ak_val, 2) + pow(bk_val, 2));
-        if (i == k / w) {
+        if (i == k / dataN.w) {
             ak_val = 0.0;
             bk_val = 2.5;
             c_k = bk_val;
@@ -123,16 +129,16 @@ int main(int argc, char **argv) {
     curve->setTitle("s(t)");
     curve->setPen(QPen(Qt::red));
     QVector<QPointF> points;
-    int N = 200;
-    double h = 0.02 / N;
-    for (int i = 0; i <= N; i++) {
-        double t = i * h;
+    // int N = 200;
+    // double h = 0.02 / N;
+    for (int i = 0; i <= dataN.N; i++) {
+        double t = i * dataN.h;
         double sum = a0() / 2;
         for (int j = 1; j <= 5; j++) {
             double ak_val = ak(j);
             double bk_val = bk(j);
-            double w = 2 * pi / 0.02;
-            double term = ak_val * cos(j * w * t) + bk_val * sin(j * w * t);
+            // double w = 2 * pi / 0.02;
+            double term = ak_val * cos(j * dataN.w * t) + bk_val * sin(j * dataN.w * t);
             sum += term;
         }
         points.append(QPointF(t, sum));
