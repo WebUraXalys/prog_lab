@@ -87,13 +87,13 @@ class Node:
                 self.left.postfix_order()
             if self.right:
                 self.right.postfix_order()
-            print(" {}".format(self.data))
+            print("{}".format(self.data))
 
     def infix_order(self):
         if self:
             if self.left:
                 self.left.infix_order()
-            print(" {}".format(self.data))
+            print("Inf {}".format(self.data))
             if self.right:
                 self.right.infix_order()
 
